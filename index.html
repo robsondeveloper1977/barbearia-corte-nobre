@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CORTE NOBRE Barber Club — Barbearia Premium em São Paulo</title>
+<meta name="description" content="Corte Nobre Barber Club: cortes modernos, barba terapia, degradê navalhado. Agende seu horário pelo WhatsApp. Rua Oscar Freire, 500 - Jardins, São Paulo.">
+<meta property="og:title" content="CORTE NOBRE Barber Club">
+<meta property="og:description" content="Estilo, tradição e atitude. Agende seu horário.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ============ PRELOADER ============ -->
+<div class="preloader" id="preloader" aria-hidden="true">
+  <img src="assets/logo.svg" alt="" class="preloader-logo">
+  <div class="preloader-name">CORTE NOBRE</div>
+  <div class="preloader-bar"><span></span></div>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header class="header" id="header">
+  <div class="container header-inner">
+    <a href="#top" class="brand">
+      <img src="assets/logo.svg" alt="Corte Nobre" width="44" height="44">
+      <span class="brand-text">CORTE <em>NOBRE</em><small>BARBER CLUB</small></span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Menu principal">
+      <a href="#servicos">Serviços</a>
+      <a href="#galeria">Galeria</a>
+      <a href="#barbeiros">Barbeiros</a>
+      <a href="#precos">Preços</a>
+      <a href="#depoimentos">Avaliações</a>
+      <a href="#contato">Contato</a>
+      <a href="#agendar" class="btn btn-gold nav-cta">Agendar Horário</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="hero-slides" id="heroSlides">
+    <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?q=80&w=1920&auto=format&fit=crop')"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=1920&auto=format&fit=crop')"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1622286342621-4bd786c2447c?q=80&w=1920&auto=format&fit=crop')"></div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="container hero-content">
+    <span class="hero-badge reveal">✦ Desde 2013 · Jardins — São Paulo</span>
+    <h1 class="hero-title">SEU ESTILO<br><span class="gold-stroke">MERECE RESPEITO</span></h1>
+    <p class="hero-sub">Degradê navalhado, barba terapia com toalha quente e acabamento de precisão. Cadeira de couro, café passado e playlist boa te esperando.</p>
+    <div class="hero-ctas">
+      <a href="#agendar" class="btn btn-gold btn-lg">Agendar Horário</a>
+      <a href="#servicos" class="btn btn-ghost btn-lg">Ver Serviços</a>
+    </div>
+    <div class="hero-proof">
+      <div class="stars">★★★★★ <strong>4.9</strong></div>
+      <span>+2.400 avaliações no Google</span>
+    </div>
+  </div>
+  <div class="hero-nav">
+    <button id="heroPrev" aria-label="Slide anterior">‹</button>
+    <div class="hero-dots" id="heroDots"></div>
+    <button id="heroNext" aria-label="Próximo slide">›</button>
+  </div>
+  <a href="#stats" class="scroll-hint" aria-label="Rolar para baixo"><span></span></a>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>DEGRADÊ ✦ BARBA TERAPIA ✦ NAVALHA ✦ CORTE CLÁSSICO ✦ PIGMENTAÇÃO ✦ DIA DO NOIVO ✦&nbsp;</span>
+    <span>DEGRADÊ ✦ BARBA TERAPIA ✦ NAVALHA ✦ CORTE CLÁSSICO ✦ PIGMENTAÇÃO ✦ DIA DO NOIVO ✦&nbsp;</span>
+  </div>
+</div>
+
+<!-- ============ STATS ============ -->
+<section class="stats" id="stats">
+  <div class="container stats-grid">
+    <div class="stat reveal"><strong><span class="counter" data-target="12">0</span>+</strong><span>anos de ofício</span></div>
+    <div class="stat reveal"><strong><span class="counter" data-target="15">0</span>k+</strong><span>cortes entregues</span></div>
+    <div class="stat reveal"><strong><span class="counter" data-target="6">0</span></strong><span>barbeiros mestres</span></div>
+    <div class="stat reveal"><strong>4.9<span class="gold">★</span></strong><span>nota média</span></div>
+  </div>
+</section>
+
+<!-- ============ SERVIÇOS ============ -->
+<section class="section" id="servicos">
+  <div class="container">
+    <p class="kicker reveal">Nossos serviços</p>
+    <h2 class="section-title reveal">ESCOLHA SEU <span class="gold">RITUAL</span></h2>
+    <p class="section-sub reveal">Todos os atendimentos incluem lavagem, finalização com pomada premium e café.</p>
+    <div class="cards">
+      <article class="card reveal" data-service="Corte Clássico">
+        <div class="card-icon">✂</div>
+        <h3>Corte Clássico</h3>
+        <p>Tesoura + máquina, contorno na navalha e acabamento milimétrico.</p>
+        <div class="card-foot"><span class="price">R$ 70</span><span class="time">~40 min</span></div>
+        <button class="btn btn-line book-service">Agendar</button>
+      </article>
+      <article class="card reveal" data-service="Degradê Navalhado">
+        <div class="card-icon">◐</div>
+        <h3>Degradê Navalhado</h3>
+        <p>Fade suave ou marcado, disfarce perfeito e linha de contorno nítida.</p>
+        <div class="card-foot"><span class="price">R$ 80</span><span class="time">~50 min</span></div>
+        <button class="btn btn-line book-service">Agendar</button>
+      </article>
+      <article class="card reveal" data-service="Barba Terapia">
+        <div class="card-icon">♨</div>
+        <h3>Barba Terapia</h3>
+        <p>Toalha quente, óleo essencial, navalha e massagem facial relaxante.</p>
+        <div class="card-foot"><span class="price">R$ 60</span><span class="time">~35 min</span></div>
+        <button class="btn btn-line book-service">Agendar</button>
+      </article>
+      <article class="card highlight reveal" data-service="Combo Corte + Barba">
+        <div class="card-tag">MAIS PEDIDO</div>
+        <div class="card-icon">♛</div>
+        <h3>Combo Corte + Barba</h3>
+        <p>O ritual completo: corte, barba terapia, sobrancelha e hidratação.</p>
+        <div class="card-foot"><span class="price">R$ 120 <s>R$ 140</s></span><span class="time">~1h20</span></div>
+        <button class="btn btn-gold book-service">Agendar</button>
+      </article>
+      <article class="card reveal" data-service="Coloração / Pigmentação">
+        <div class="card-icon">▦</div>
+        <h3>Coloração</h3>
+        <p>Cobertura de brancos, pigmentação de barba e camuflagem natural.</p>
+        <div class="card-foot"><span class="price">R$ 90</span><span class="time">~45 min</span></div>
+        <button class="btn btn-line book-service">Agendar</button>
+      </article>
+      <article class="card reveal" data-service="Dia do Noivo">
+        <div class="card-icon">◈</div>
+        <h3>Dia do Noivo</h3>
+        <p>Sala privativa, espumante, corte + barba + massagem. Para o grande dia.</p>
+        <div class="card-foot"><span class="price">R$ 299</span><span class="time">~3h</span></div>
+        <button class="btn btn-line book-service">Agendar</button>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALERIA ============ -->
+<section class="section section-dark" id="galeria">
+  <div class="container">
+    <p class="kicker reveal">Antes / Depois</p>
+    <h2 class="section-title reveal">RESULTADO <span class="gold">FALA ALTO</span></h2>
+    <p class="section-sub reveal">Arraste o controle para comparar. Clique em qualquer foto para ampliar.</p>
+    <div class="compare reveal" id="compare">
+      <img class="compare-img after" src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?q=80&w=1400&auto=format&fit=crop" alt="Depois do corte">
+      <div class="compare-before" id="compareBefore">
+        <img class="compare-img" src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=1400&auto=format&fit=crop" alt="Antes do corte">
+      </div>
+      <span class="compare-label left">ANTES</span>
+      <span class="compare-label right">DEPOIS</span>
+      <div class="compare-handle" id="compareHandle"><span>⇔</span></div>
+      <input type="range" min="0" max="100" value="50" class="compare-range" id="compareRange" aria-label="Comparar antes e depois">
+    </div>
+    <div class="gallery">
+      <figure class="g-item reveal"><img loading="lazy" src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?q=80&w=800&auto=format&fit=crop" alt="Salão da barbearia"><figcaption>Nosso salão</figcaption></figure>
+      <figure class="g-item reveal"><img loading="lazy" src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=800&auto=format&fit=crop" alt="Corte em atendimento"><figcaption>Em atendimento</figcaption></figure>
+      <figure class="g-item reveal"><img loading="lazy" src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?q=80&w=800&auto=format&fit=crop" alt="Acabamento na navalha"><figcaption>Detalhe navalha</figcaption></figure>
+      <figure class="g-item reveal"><img loading="lazy" src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=800&auto=format&fit=crop" alt="Aparando a barba"><figcaption>Barba terapia</figcaption></figure>
+    </div>
+  </div>
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Fechar">✕</button>
+    <img id="lightboxImg" src="" alt="Foto ampliada">
+  </div>
+</section>
+
+<!-- ============ BARBEIROS ============ -->
+<section class="section" id="barbeiros">
+  <div class="container">
+    <p class="kicker reveal">O time</p>
+    <h2 class="section-title reveal">MESTRES DA <span class="gold">NAVALHA</span></h2>
+    <div class="team">
+      <article class="mate reveal" data-barber="Diego Marra">
+        <div class="mate-photo"><img loading="lazy" src="https://images.unsplash.com/photo-1618077360395-f3068be8e001?q=80&w=800&auto=format&fit=crop" alt="Barbeiro Diego Marra"></div>
+        <h3>Diego Marra</h3><p class="mate-role">Especialista em degradê · 9 anos</p>
+        <button class="btn btn-line book-barber">Agendar com Diego</button>
+      </article>
+      <article class="mate reveal" data-barber="Rafa Costa">
+        <div class="mate-photo"><img loading="lazy" src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?q=80&w=800&auto=format&fit=crop" alt="Barbeiro Rafa Costa"></div>
+        <h3>Rafa Costa</h3><p class="mate-role">Barba &amp; visagismo · 7 anos</p>
+        <button class="btn btn-line book-barber">Agendar com Rafa</button>
+      </article>
+      <article class="mate reveal" data-barber="Thiago Nobre">
+        <div class="mate-photo"><img loading="lazy" src="https://images.unsplash.com/photo-1583195764036-6dc248ac07d9?q=80&w=800&auto=format&fit=crop" alt="Barbeiro Thiago Nobre"></div>
+        <h3>Thiago Nobre</h3><p class="mate-role">Clássicos &amp; tesoura · 12 anos</p>
+        <button class="btn btn-line book-barber">Agendar com Thiago</button>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DEPOIMENTOS ============ -->
+<section class="section section-dark" id="depoimentos">
+  <div class="container">
+    <p class="kicker reveal">Quem sentou na cadeira</p>
+    <h2 class="section-title reveal">CLIENTES <span class="gold">FIÉIS</span></h2>
+    <div class="carousel reveal" id="carousel">
+      <div class="carousel-track" id="carouselTrack">
+        <blockquote class="t-card"><div class="stars">★★★★★</div><p>"Melhor degradê que já fizeram em mim. O Diego entende de formato de rosto, não é só passar máquina."</p><cite>— Lucas M. · Vila Mariana</cite></blockquote>
+        <blockquote class="t-card"><div class="stars">★★★★★</div><p>"Barba terapia com toalha quente é outro nível. Saí de lá me sentindo num filme. Virei cliente fixo."</p><cite>— Fernando A. · Moema</cite></blockquote>
+        <blockquote class="t-card"><div class="stars">★★★★★</div><p>"Fiz o Dia do Noivo com meu pai e meu padrinho. Espumante, risada e corte impecável. Recomendo demais."</p><cite>— Bruno C. · Pinheiros</cite></blockquote>
+        <blockquote class="t-card"><div class="stars">★★★★★</div><p>"Agendei pelo WhatsApp em 1 minuto e fui atendido na hora exata. Organização de gente grande."</p><cite>— Rafael T. · Jardins</cite></blockquote>
+      </div>
+      <div class="carousel-nav">
+        <button id="tPrev" aria-label="Depoimento anterior">‹</button>
+        <div class="carousel-dots" id="tDots"></div>
+        <button id="tNext" aria-label="Próximo depoimento">›</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PREÇOS ============ -->
+<section class="section" id="precos">
+  <div class="container">
+    <p class="kicker reveal">Tabela</p>
+    <h2 class="section-title reveal">PREÇO <span class="gold">JUSTO</span></h2>
+    <div class="price-table reveal">
+      <div class="price-row"><span>Corte Clássico</span><span class="dots"></span><strong>R$ 70</strong></div>
+      <div class="price-row"><span>Degradê Navalhado</span><span class="dots"></span><strong>R$ 80</strong></div>
+      <div class="price-row"><span>Barba Terapia</span><span class="dots"></span><strong>R$ 60</strong></div>
+      <div class="price-row featured"><span>Combo Corte + Barba</span><span class="dots"></span><strong>R$ 120</strong></div>
+      <div class="price-row"><span>Coloração / Pigmentação</span><span class="dots"></span><strong>R$ 90</strong></div>
+      <div class="price-row"><span>Dia do Noivo</span><span class="dots"></span><strong>R$ 299</strong></div>
+    </div>
+    <p class="plans-note reveal">💈 Plano mensal <strong>Nobre Club — R$ 199/mês</strong>: cortes ilimitados + 10% em produtos. Pergunte na recepção.</p>
+  </div>
+</section>
+
+<!-- ============ AGENDAMENTO ============ -->
+<section class="section section-dark booking" id="agendar">
+  <div class="container booking-grid">
+    <div class="booking-info reveal">
+      <p class="kicker">Agendamento</p>
+      <h2 class="section-title">GARANTA SUA <span class="gold">CADEIRA</span></h2>
+      <p>Preencha ao lado e confirme pelo WhatsApp em segundos. Sem cadastro, sem app, sem enrolação.</p>
+      <ul class="booking-steps">
+        <li><span>1</span> Escolha serviço, barbeiro, data e hora</li>
+        <li><span>2</span> Clique em confirmar — abrimos o WhatsApp com tudo pronto</li>
+        <li><span>3</span> Receba a confirmação e chegue com 5 min de antecedência</li>
+      </ul>
+      <div class="booking-hours">
+        <div><strong>Seg — Sex</strong><span>09h às 20h</span></div>
+        <div><strong>Sábado</strong><span>08h às 18h</span></div>
+        <div><strong>Domingo</strong><span>Fechado</span></div>
+      </div>
+    </div>
+    <form class="booking-form reveal" id="bookingForm" novalidate>
+      <label>Seu nome
+        <input type="text" id="fName" placeholder="Ex: Carlos Silva" autocomplete="name" required>
+      </label>
+      <label>Seu WhatsApp
+        <input type="tel" id="fPhone" placeholder="(11) 99999-9999" autocomplete="tel" required>
+      </label>
+      <div class="form-row">
+        <label>Serviço
+          <select id="fService" required>
+            <option value="">Selecione…</option>
+            <option>Corte Clássico — R$ 70</option>
+            <option>Degradê Navalhado — R$ 80</option>
+            <option>Barba Terapia — R$ 60</option>
+            <option selected>Combo Corte + Barba — R$ 120</option>
+            <option>Coloração / Pigmentação — R$ 90</option>
+            <option>Dia do Noivo — R$ 299</option>
+          </select>
+        </label>
+        <label>Barbeiro
+          <select id="fBarber" required>
+            <option value="">Tanto faz</option>
+            <option>Diego Marra</option>
+            <option>Rafa Costa</option>
+            <option>Thiago Nobre</option>
+          </select>
+        </label>
+      </div>
+      <div class="form-row">
+        <label>Data
+          <input type="date" id="fDate" required>
+        </label>
+        <label>Hora
+          <select id="fTime" required>
+            <option value="">Selecione a data primeiro…</option>
+          </select>
+        </label>
+      </div>
+      <label>Observações (opcional)
+        <input type="text" id="fNotes" placeholder="Ex: quero disfarçar a cicatriz…">
+      </label>
+      <p class="form-error" id="formError" role="alert"></p>
+      <div class="booking-summary" id="bookingSummary" hidden></div>
+      <button type="submit" class="btn btn-gold btn-lg btn-block">Confirmar pelo WhatsApp ✆</button>
+      <p class="form-hint">Ao confirmar, o WhatsApp abre com sua mensagem pronta. Basta enviar.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ============ CONTATO ============ -->
+<section class="section" id="contato">
+  <div class="container contact-grid">
+    <div class="reveal">
+      <p class="kicker">Onde estamos</p>
+      <h2 class="section-title">PASSE NA <span class="gold">LOJA</span></h2>
+      <p class="contact-line">📍 Rua Oscar Freire, 500 — Jardins, São Paulo/SP</p>
+      <p class="contact-line">✆ (11) 99999-9999 · seg a sáb</p>
+      <p class="contact-line">✉ contato@cortenobre.com.br</p>
+      <div class="contact-ctas">
+        <a class="btn btn-gold" href="#agendar">Agendar horário</a>
+        <a class="btn btn-line" href="https://maps.google.com/?q=Rua+Oscar+Freire+500+Sao+Paulo" target="_blank" rel="noopener">Como chegar</a>
+      </div>
+    </div>
+    <div class="map-wrap reveal">
+      <iframe title="Mapa da barbearia" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps?q=Rua+Oscar+Freire+500+Sao+Paulo&output=embed"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section section-dark" id="faq">
+  <div class="container faq-wrap">
+    <p class="kicker reveal">Dúvidas</p>
+    <h2 class="section-title reveal">PERGUNTAS <span class="gold">FREQUENTES</span></h2>
+    <details class="faq reveal" open><summary>Preciso agendar ou posso chegar direto?</summary><p>Atendemos por ordem de chegada quando há cadeira livre, mas o agendamento pelo WhatsApp garante seu horário sem espera — recomendado de quinta a sábado.</p></details>
+    <details class="faq reveal"><summary>Quais formas de pagamento?</summary><p>Pix, débito, crédito em até 3x e dinheiro. O plano Nobre Club sai no débito automático com 10% off em produtos.</p></details>
+    <details class="faq reveal"><summary>Quanto tempo dura cada serviço?</summary><p>Corte 40–50 min, barba 35 min, combo 1h20 e Dia do Noivo cerca de 3h com sala privativa.</p></details>
+    <details class="faq reveal"><summary>Atendem crianças?</summary><p>Sim! Corte infantil (até 12 anos) por R$ 55, com paciência extra e cadeira adaptada.</p></details>
+    <details class="faq reveal"><summary>Posso cancelar ou remarcar?</summary><p>Claro — basta chamar no WhatsApp com pelo menos 2h de antecedência, sem custo.</p></details>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <a href="#top" class="brand">
+        <img src="assets/logo.svg" alt="Corte Nobre" width="40" height="40">
+        <span class="brand-text">CORTE <em>NOBRE</em><small>BARBER CLUB</small></span>
+      </a>
+      <p class="footer-desc">Estilo, tradição e atitude desde 2013. Jardins — São Paulo.</p>
+    </div>
+    <nav aria-label="Links do rodapé">
+      <strong>Explorar</strong>
+      <a href="#servicos">Serviços</a><a href="#galeria">Galeria</a><a href="#precos">Preços</a><a href="#agendar">Agendar</a>
+    </nav>
+    <div>
+      <strong>Horários</strong>
+      <p>Seg — Sex · 09h às 20h<br>Sábado · 08h às 18h<br>Domingo · fechado</p>
+    </div>
+    <div>
+      <strong>Contato</strong>
+      <p>(11) 99999-9999<br>contato@cortenobre.com.br<br>Rua Oscar Freire, 500</p>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Corte Nobre Barber Club · Dados fictícios para demonstração · Feito com navalha afiada ♛</div>
+</footer>
+
+<a href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Quero%20agendar%20um%20hor%C3%A1rio%20na%20Corte%20Nobre." class="wa-float" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">✆</a>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
