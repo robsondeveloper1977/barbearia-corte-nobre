@@ -249,3 +249,59 @@ a{color:inherit;text-decoration:none}
   .footer-grid{grid-template-columns:1fr}
   .booking-hours{grid-template-columns:1fr}
 }
+
+/* ===== Welcome popover (boas-vindas) ===== */
+.welcome-overlay{position:fixed;inset:0;z-index:250;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(5,5,6,.72);backdrop-filter:blur(8px);opacity:0;visibility:hidden;transition:opacity .45s ease,visibility .45s}
+.welcome-overlay.open{opacity:1;visibility:visible}
+.welcome-pop{position:relative;width:min(480px,94vw);max-height:92svh;overflow:auto;background:linear-gradient(165deg,#1d1d20 0%,#101013 70%);border:1px solid rgba(201,162,39,.55);border-radius:22px;padding:22px 24px 20px;text-align:center;box-shadow:0 30px 90px rgba(0,0,0,.65),0 0 0 1px rgba(0,0,0,.4),0 0 60px rgba(201,162,39,.12);transform:translateY(36px) scale(.94);transition:transform .55s cubic-bezier(.2,1.4,.3,1)}
+.welcome-overlay.open .welcome-pop{transform:none}
+.welcome-close{position:absolute;top:12px;right:12px;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:rgba(0,0,0,.5);color:var(--cream);cursor:pointer;font-size:.95rem;z-index:3;transition:.25s}
+.welcome-close:hover{border-color:var(--gold);color:var(--gold);transform:rotate(90deg)}
+.welcome-media{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#000;margin-bottom:16px;aspect-ratio:16/9;max-height:300px}
+.welcome-video{display:block;width:100%;height:100%;max-height:300px;object-fit:cover;background:#000}
+.welcome-scene{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:radial-gradient(400px 160px at 50% 0%,rgba(201,162,39,.18),transparent),#141416;margin-bottom:16px}
+.welcome-svg{display:block;width:100%;height:auto}
+.welcome-sound{position:absolute;bottom:10px;right:10px;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:rgba(0,0,0,.55);color:#fff;font-size:1rem;cursor:pointer;z-index:3;transition:.25s;backdrop-filter:blur(6px)}
+.welcome-sound:hover{border-color:var(--gold);transform:scale(1.08)}
+.welcome-live{position:absolute;top:10px;left:10px;font-size:.68rem;font-weight:800;letter-spacing:.12em;background:rgba(0,0,0,.6);color:#ff5b5b;border:1px solid rgba(255,91,91,.4);padding:5px 12px;border-radius:99px;z-index:3;backdrop-filter:blur(6px)}
+.welcome-bubble{position:absolute;top:10px;left:50%;transform:translateX(-50%);background:var(--cream);color:#111;font-weight:800;font-size:.82rem;padding:8px 16px;border-radius:99px;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.4);z-index:2;animation:bubblePop .6s .9s cubic-bezier(.2,1.6,.3,1) both,welcomeFloat 3s 1.6s ease-in-out infinite}
+.welcome-bubble::after{content:"";position:absolute;left:38px;bottom:-6px;width:12px;height:12px;background:var(--cream);transform:rotate(45deg)}
+@keyframes bubblePop{from{opacity:0;transform:translateX(-50%) scale(.5)}to{opacity:1;transform:translateX(-50%) scale(1)}}
+@keyframes welcomeFloat{0%,100%{margin-top:0}50%{margin-top:-5px}}
+.welcome-kicker{color:var(--gold);text-transform:uppercase;letter-spacing:.32em;font-size:.72rem;font-weight:800;margin-bottom:6px}
+.welcome-title{font-family:var(--font-title);font-size:2rem;line-height:1;letter-spacing:.02em;margin-bottom:8px}
+.welcome-desc{color:var(--muted);font-size:.92rem;margin-bottom:12px}
+.welcome-audio-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
+.welcome-audio-btn{flex:1;min-width:160px;border:1px solid rgba(201,162,39,.5);background:rgba(201,162,39,.1);color:var(--gold-2);font-weight:700;font-size:.85rem;padding:11px 14px;border-radius:99px;cursor:pointer;transition:.25s}
+.welcome-audio-btn:hover{border-color:var(--gold);background:rgba(201,162,39,.2);transform:translateY(-1px)}
+.welcome-audio-btn.is-off{border-color:var(--line);background:rgba(255,255,255,.04);color:var(--muted)}
+.welcome-audio-btn.speaking{border-color:var(--gold);background:var(--gold);color:#111}
+.welcome-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:12px}
+.welcome-actions .btn{flex:1;min-width:170px;padding:13px 18px;font-size:.92rem}
+.welcome-remember{display:flex;align-items:center;justify-content:center;gap:8px;font-size:.8rem;color:var(--muted);cursor:pointer;user-select:none}
+.welcome-remember input{accent-color:var(--gold);width:16px;height:16px;cursor:pointer}
+/* --- animações da recepção --- */
+.w-wave{transform-box:fill-box;transform-origin:8% 50%;animation:wave 1.3s ease-in-out infinite}
+@keyframes wave{0%,100%{transform:rotate(0)}25%{transform:rotate(-22deg) translateY(-2px)}50%{transform:rotate(8deg)}75%{transform:rotate(-14deg)}}
+.w-client{animation:clientIn 1s .25s cubic-bezier(.2,.9,.25,1) both}
+@keyframes clientIn{from{opacity:0;transform:translateX(90px)}to{opacity:1;transform:none}}
+.w-walk{animation:walkBob .45s ease-in-out infinite alternate}
+@keyframes walkBob{from{transform:translateY(0)}to{transform:translateY(-3px)}}
+.pole-fill{animation:poleSlide 2.2s linear infinite}
+@keyframes poleSlide{from{transform:translateY(-16px)}to{transform:translateY(0)}}
+.door-light{animation:doorGlow 2.4s ease-in-out infinite alternate}
+@keyframes doorGlow{from{opacity:.1}to{opacity:.32}}
+.w-sparkles .sp{opacity:0;animation:twinkle 2s ease-in-out infinite}
+.w-sparkles .sp2{animation-delay:.4s}.w-sparkles .sp3{animation-delay:.8s}.w-sparkles .sp4{animation-delay:1.2s}
+@keyframes twinkle{0%,100%{opacity:0;transform:translateY(0)}50%{opacity:1;transform:translateY(-6px)}}
+.welcome-pop::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(300px 120px at 50% -10%,rgba(232,197,71,.14),transparent)}
+@media(max-width:560px){
+  .welcome-pop{padding:18px 16px}
+  .welcome-title{font-size:1.7rem}
+  .welcome-actions .btn{min-width:100%}
+}
+@media (prefers-reduced-motion:reduce){
+  .w-wave,.w-client,.w-walk,.pole-fill,.door-light,.w-sparkles .sp,.welcome-bubble{animation:none!important}
+  .w-client{opacity:1}
+  .welcome-pop,.welcome-overlay{transition:none}
+}

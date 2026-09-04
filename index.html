@@ -365,6 +365,118 @@
   <div class="footer-bottom">© 2026 Corte Nobre Barber Club · Dados fictícios para demonstração · <a href="admin.html" style="color:#6b6b70">Área do barbeiro</a> · Feito com navalha afiada ♛</div>
 </footer>
 
+<div class="welcome-overlay" id="welcomeOverlay" aria-hidden="true">
+  <div class="welcome-pop" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle" aria-describedby="welcomeDesc">
+    <button class="welcome-close" id="welcomeClose" aria-label="Fechar boas-vindas">✕</button>
+    <div class="welcome-media">
+      <video id="welcomeVideo" class="welcome-video" src="assets/welcome.mp4" poster="assets/welcome-poster.jpg" autoplay muted loop playsinline preload="metadata"></video>
+      <div class="welcome-bubble">Bem-vindo! A cadeira é sua 💈</div>
+      <button class="welcome-sound" id="welcomeSound" type="button" aria-label="Ativar som do vídeo">🔇</button>
+      <span class="welcome-live">● RECEBENDO VOCÊ</span>
+      <audio id="welcomeAudio" src="assets/welcome-audio.mp3" preload="auto" loop></audio>
+      <svg viewBox="0 0 360 200" class="welcome-svg" aria-hidden="true" hidden>
+        <!-- fundo barbearia -->
+        <rect x="0" y="0" width="360" height="132" rx="18" fill="#1d1d20"/>
+        <rect x="0" y="132" width="360" height="68" rx="0" fill="#121214"/>
+        <rect x="0" y="130" width="360" height="4" fill="#2a2a2e"/>
+        <!-- espelho / quadro -->
+        <rect x="128" y="18" width="104" height="64" rx="10" fill="#0e0e10" stroke="#C9A227" stroke-width="2"/>
+        <text x="180" y="46" text-anchor="middle" font-size="13" font-weight="800" fill="#e8c547" font-family="Inter,sans-serif">CORTE NOBRE</text>
+        <text x="180" y="63" text-anchor="middle" font-size="9" fill="#a7a7ad" font-family="Inter,sans-serif">✦ desde 2013 ✦</text>
+        <!-- barber pole -->
+        <defs>
+          <clipPath id="poleClip"><rect x="24" y="30" width="22" height="68" rx="11"/></clipPath>
+          <pattern id="polePattern" width="16" height="16" patternTransform="rotate(25)" patternUnits="userSpaceOnUse">
+            <rect width="16" height="16" fill="#f5f1e8"/>
+            <rect width="5" height="16" fill="#c8352b"/>
+            <rect x="10" width="4" height="16" fill="#2b5fc8"/>
+          </pattern>
+        </defs>
+        <g>
+          <rect x="22" y="28" width="26" height="72" rx="13" fill="#f5f1e8" stroke="#C9A227" stroke-width="2"/>
+          <g clip-path="url(#poleClip)">
+            <rect x="24" y="30" width="22" height="68" fill="url(#polePattern)" class="pole-fill"/>
+          </g>
+          <rect x="28" y="20" width="14" height="8" rx="2" fill="#C9A227"/>
+          <rect x="28" y="100" width="14" height="8" rx="2" fill="#C9A227"/>
+        </g>
+        <!-- porta aberta direita -->
+        <g>
+          <rect x="288" y="34" width="52" height="100" rx="6" fill="#0e0e10" stroke="#3a3a3f" stroke-width="2"/>
+          <rect x="296" y="42" width="36" height="92" rx="4" fill="#e8c547" opacity=".18" class="door-light"/>
+        </g>
+        <!-- tapete -->
+        <ellipse cx="180" cy="168" rx="120" ry="16" fill="#C9A227" opacity=".12"/>
+        <ellipse cx="180" cy="168" rx="78" ry="10" fill="#C9A227" opacity=".14"/>
+        <!-- ===== BARBEIRO (esquerda, recepcionando) ===== -->
+        <g class="w-barber">
+          <ellipse cx="120" cy="172" rx="28" ry="6" fill="#000" opacity=".45"/>
+          <!-- pernas -->
+          <rect x="106" y="140" width="11" height="28" rx="5" fill="#222227"/>
+          <rect x="123" y="140" width="11" height="28" rx="5" fill="#222227"/>
+          <!-- corpo / avental -->
+          <rect x="100" y="96" width="40" height="50" rx="12" fill="#2e2e33" stroke="#C9A227" stroke-width="1.5"/>
+          <rect x="111" y="102" width="18" height="30" rx="5" fill="#C9A227" opacity=".9"/>
+          <text x="120" y="121" text-anchor="middle" font-size="11" font-weight="900" fill="#111">♛</text>
+          <!-- cabeça -->
+          <circle cx="120" cy="78" r="18" fill="#e9b48a"/>
+          <path d="M102 74 Q120 52 138 74 L138 66 Q120 44 102 66 Z" fill="#1c1c1f"/>
+          <path d="M106 84 Q120 104 134 84 Q132 96 120 98 Q108 96 106 84Z" fill="#3a2a22"/>
+          <circle cx="113" cy="76" r="1.8" fill="#111"/><circle cx="127" cy="76" r="1.8" fill="#111"/>
+          <path d="M114 86 Q120 90 126 86" stroke="#111" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+          <!-- braço esquerdo parado -->
+          <rect x="92" y="100" width="10" height="30" rx="5" fill="#e9b48a" transform="rotate(12 97 105)"/>
+          <!-- braço direito ACENANDO -->
+          <g class="w-wave">
+            <rect x="136" y="86" width="34" height="11" rx="5.5" fill="#e9b48a"/>
+            <circle cx="172" cy="91" r="8" fill="#e9b48a"/>
+            <g class="w-fingers" fill="#e9b48a">
+              <rect x="175" y="79" width="5" height="10" rx="2.5"/>
+              <rect x="180" y="80" width="5" height="10" rx="2.5"/>
+              <rect x="170" y="80" width="5" height="10" rx="2.5"/>
+            </g>
+          </g>
+        </g>
+        <!-- ===== CLIENTE (direita, chegando) ===== -->
+        <g class="w-client">
+          <ellipse cx="248" cy="172" rx="26" ry="6" fill="#000" opacity=".45"/>
+          <g class="w-walk">
+            <rect x="236" y="140" width="10" height="28" rx="5" fill="#3a3f4a"/>
+            <rect x="250" y="140" width="10" height="28" rx="5" fill="#2e333d"/>
+          </g>
+          <rect x="232" y="100" width="34" height="44" rx="10" fill="#3f6b4f"/>
+          <rect x="232" y="100" width="34" height="12" rx="6" fill="#355a43"/>
+          <circle cx="249" cy="82" r="16" fill="#f0c49e"/>
+          <path d="M233 78 Q249 60 265 78 L264 70 Q249 54 234 70 Z" fill="#2b2118"/>
+          <circle cx="243" cy="80" r="1.7" fill="#111"/><circle cx="255" cy="80" r="1.7" fill="#111"/>
+          <path d="M243 89 Q249 93 255 89" stroke="#111" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+          <!-- mochila -->
+          <rect x="262" y="108" width="14" height="22" rx="6" fill="#C9A227"/>
+        </g>
+        <!-- sparkles -->
+        <g fill="#e8c547" class="w-sparkles">
+          <text x="170" y="50" font-size="14" class="sp sp1">✦</text>
+          <text x="200" y="92" font-size="11" class="sp sp2">✦</text>
+          <text x="90" y="58" font-size="10" class="sp sp3">✦</text>
+          <text x="270" y="62" font-size="12" class="sp sp4">✦</text>
+        </g>
+      </svg>
+    </div>
+    <p class="welcome-kicker">✦ Seja bem-vindo ✦</p>
+    <h2 class="welcome-title" id="welcomeTitle">Prazer te receber na <span class="gold">CORTE NOBRE</span></h2>
+    <p class="welcome-desc" id="welcomeDesc">Cadeira de couro, café passado e acabamento de precisão te esperando. Agende em 1 minuto pelo WhatsApp — sem cadastro, sem enrolação.</p>
+    <div class="welcome-audio-row">
+      <button class="welcome-audio-btn" id="welcomeVoiceBtn" type="button" aria-label="Ouvir mensagem de boas-vindas">🔊 Ouvir boas-vindas</button>
+      <button class="welcome-audio-btn is-off" id="welcomeMusicBtn" type="button" aria-label="Ligar música ambiente" aria-pressed="false">🎷 Música: off</button>
+    </div>
+    <div class="welcome-actions">
+      <a href="#agendar" class="btn btn-gold" id="welcomeCta">Agendar Horário</a>
+      <button class="btn btn-ghost" id="welcomeLater" type="button">Conhecer a barbearia</button>
+    </div>
+    <label class="welcome-remember"><input type="checkbox" id="welcomeHide"> Não mostrar novamente</label>
+  </div>
+</div>
+
 <a href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Quero%20agendar%20um%20hor%C3%A1rio%20na%20Corte%20Nobre." class="wa-float" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">✆</a>
 <div class="toast" id="toast" role="status"></div>
 

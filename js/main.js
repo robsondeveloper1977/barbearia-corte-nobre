@@ -255,3 +255,150 @@ function toast(m) {
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
 }
+
+/* ---------- Popover boas-vindas (vídeo de recepção) ---------- */
+(() => {
+  const overlay = $('#welcomeOverlay');
+  if (!overlay) return;
+  const video = $('#welcomeVideo');
+  const audio = $('#welcomeAudio');
+  const btnSound = $('#welcomeSound');
+  const btnVoice = $('#welcomeVoiceBtn');
+  const btnMusic = $('#welcomeMusicBtn');
+  const WELCOME_TEXT = 'Bem-vindo à Corte Nobre! Prazer te receber. Cadeira de couro, café passado e acabamento de precisão te esperando. Agende seu horário em um minuto!';
+  let musicOn = false;
+  const btnClose = $('#welcomeClose');
+  const btnLater = $('#welcomeLater');
+  const btnCta = $('#welcomeCta');
+  const chkHide = $('#welcomeHide');
+  const KEY = 'cn_welcome_hide';
+  let opened = false;
+  let lastFocus = null;
+
+  const shouldShow = () => {
+    try { return localStorage.getItem(KEY) !== '1'; }
+    catch { return true; }
+  };
+
+  function playVideo() {
+    if (!video) return;
+    video.muted = true;
+    video.currentTime = 0;
+    const p = video.play();
+    if (p && p.catch) p.catch(() => { /* autoplay bloqueado: mostra poster */ });
+  }
+
+  function stopVideo() {
+    if (!video) return;
+    video.pause();
+  }
+
+  function stopVoice() {
+    try { if ('speechSynthesis' in window) speechSynthesis.cancel(); } catch { /* ignore */ }
+    if (btnVoice) btnVoice.classList.remove('speaking');
+  }
+
+  function speakWelcome() {
+    if (!('speechSynthesis' in window)) { toast('Áudio não suportado neste navegador 🙁'); return; }
+    try {
+      speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(WELCOME_TEXT);
+      u.lang = 'pt-BR';
+      u.rate = 1;
+      u.pitch = 1;
+      const voices = speechSynthesis.getVoices();
+      const br = voices.find(v => v.lang && v.lang.toLowerCase().startsWith('pt'));
+      if (br) u.voice = br;
+      u.onstart = () => btnVoice && btnVoice.classList.add('speaking');
+      u.onend = u.onerror = () => btnVoice && btnVoice.classList.remove('speaking');
+      speechSynthesis.speak(u);
+    } catch { /* voz bloqueada: usuário clica de novo */ }
+  }
+
+  function setMusic(on) {
+    musicOn = on;
+    if (!audio) return;
+    audio.volume = 0.35;
+    if (on) {
+      audio.play().catch(() => setMusicUI(false));
+    } else {
+      audio.pause();
+    }
+    setMusicUI(on);
+  }
+
+  function setMusicUI(on) {
+    if (!btnMusic) return;
+    btnMusic.classList.toggle('is-off', !on);
+    btnMusic.setAttribute('aria-pressed', String(on));
+    btnMusic.textContent = on ? '🎷 Música: on' : '🎷 Música: off';
+  }
+
+  function open() {
+    if (opened) return;
+    if (!shouldShow()) return;
+    opened = true;
+    lastFocus = document.activeElement;
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    playVideo();
+    try { speakWelcome(); } catch { /* autoplay de voz pode ser bloqueado */ }
+    setTimeout(() => btnClose.focus({ preventScroll: true }), 450);
+  }
+
+  function close(savePref = true) {
+    if (!opened) return;
+    opened = false;
+    if (savePref && chkHide && chkHide.checked) {
+      try { localStorage.setItem(KEY, '1'); } catch { /* ignore */ }
+    }
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    stopVideo();
+    stopVoice();
+    if (audio) audio.pause();
+    if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
+  }
+
+  // abre após o preloader (1.2s) + pequeno delay extra no primeiro load
+  const boot = () => setTimeout(open, 1400);
+  if (document.readyState === 'complete') boot();
+  else addEventListener('load', boot);
+  setTimeout(() => { if (!opened) open(); }, 4000); // fallback
+
+  if (btnSound && video) {
+    btnSound.addEventListener('click', () => {
+      video.muted = !video.muted;
+      btnSound.textContent = video.muted ? '🔇' : '🔊';
+      btnSound.setAttribute('aria-label', video.muted ? 'Ativar som do vídeo' : 'Silenciar vídeo');
+      if (!video.muted && video.paused) video.play().catch(() => {});
+    });
+  }
+
+  if (btnVoice) {
+    btnVoice.addEventListener('click', () => {
+      if ('speechSynthesis' in window && speechSynthesis.speaking) { stopVoice(); return; }
+      speakWelcome();
+    });
+  }
+
+  if (btnMusic) {
+    setMusicUI(false);
+    btnMusic.addEventListener('click', () => setMusic(!musicOn));
+  }
+
+  btnClose.addEventListener('click', () => close());
+  btnLater.addEventListener('click', () => {
+    close();
+    document.querySelector('#servicos')?.scrollIntoView({ behavior: 'smooth' });
+  });
+  btnCta.addEventListener('click', () => close(false)); // deixa o anchor #agendar navegar
+  overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+  addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+
+  // expõe p/ debug / testes
+  window.__openWelcome = open;
+  window.__closeWelcome = close;
+})();
