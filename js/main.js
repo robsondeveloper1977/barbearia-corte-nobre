@@ -209,6 +209,21 @@ $('#bookingForm').addEventListener('submit', e => {
   if (!fTime.value) return fail('Escolha um horário.');
 
   const dateBR = new Date(fDate.value + 'T12:00:00').toLocaleDateString('pt-BR', { weekday: 'long', day: '2-digit', month: '2-digit' });
+
+  // salva no navegador para aparecer no painel admin (admin.html)
+  try {
+    const key = 'cn_site_bookings';
+    const list = JSON.parse(localStorage.getItem(key) || '[]');
+    const svcName = service.split(' — ')[0];
+    list.push({
+      id: 'site-' + Date.now(), name, phone, service: svcName, barber,
+      date: fDate.value, time: fTime.value,
+      price: parseInt((service.match(/R\$ (\d+)/) || [0, 0])[1], 10) || 0,
+      notes, createdAt: new Date().toISOString(),
+    });
+    localStorage.setItem(key, JSON.stringify(list));
+  } catch { /* navegador sem localStorage: segue só com WhatsApp */ }
+
   const msg =
 `💈 *CORTE NOBRE — Novo agendamento*
 --------------------------

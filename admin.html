@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Corte Nobre — Painel do Barbeiro (Admin)</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<!-- ============ LOGIN ============ -->
+<div class="login-wrap" id="loginView">
+  <form class="login-card" id="loginForm" autocomplete="off">
+    <img src="assets/logo.svg" alt="Corte Nobre" width="72" height="72">
+    <h1>CORTE <span>NOBRE</span></h1>
+    <p class="login-sub">Painel do barbeiro · acesso restrito</p>
+    <label>Token de acesso
+      <input type="password" id="tokenInput" inputmode="numeric" placeholder="••••••" maxlength="12">
+    </label>
+    <p class="login-error" id="loginError" role="alert"></p>
+    <button type="submit" class="btn btn-gold btn-block">Entrar no painel</button>
+    <p class="login-hint">Demonstração — token: <strong>779988</strong></p>
+    <a href="index.html" class="login-back">← voltar ao site</a>
+  </form>
+</div>
+
+<!-- ============ APP ============ -->
+<div class="app" id="appView" hidden>
+  <aside class="sidebar" id="sidebar">
+    <a href="index.html" class="brand">
+      <img src="assets/logo.svg" alt="" width="38" height="38">
+      <span class="brand-text">CORTE <em>NOBRE</em><small>ADMIN</small></span>
+    </a>
+    <nav class="side-nav" aria-label="Menu do painel">
+      <button data-page="dashboard" class="active">📊 Dashboard</button>
+      <button data-page="agendamentos">📅 Agendamentos <span class="pill" id="navPending">0</span></button>
+      <button data-page="clientes">👥 Clientes</button>
+      <button data-page="equipe">💈 Equipe</button>
+      <button data-page="servicos">✂ Serviços</button>
+      <button data-page="financeiro">💰 Financeiro</button>
+      <button data-page="config">⚙ Configurações</button>
+    </nav>
+    <div class="side-foot">
+      <button id="logoutBtn" class="btn btn-line btn-sm">Sair do painel</button>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="burger" id="sideToggle" aria-label="Abrir menu"><span></span><span></span><span></span></button>
+      <div class="topbar-title"><strong id="pageTitle">Dashboard</strong><span id="todayLabel"></span></div>
+      <div class="topbar-actions">
+        <button class="btn btn-gold btn-sm" id="quickNew">+ Novo agendamento</button>
+      </div>
+    </header>
+
+    <main class="content">
+      <!-- DASHBOARD -->
+      <section class="page active" id="page-dashboard">
+        <div class="kpis">
+          <div class="kpi"><span class="kpi-label">Faturamento (mês)</span><strong id="kpiRevenue">R$ 0</strong><em id="kpiRevenueDelta"></em></div>
+          <div class="kpi"><span class="kpi-label">Agendamentos hoje</span><strong id="kpiToday">0</strong><em id="kpiTodaySub"></em></div>
+          <div class="kpi"><span class="kpi-label">Ticket médio</span><strong id="kpiTicket">R$ 0</strong><em>por atendimento concluído</em></div>
+          <div class="kpi"><span class="kpi-label">Taxa de ocupação</span><strong id="kpiOccup">0%</strong><em>próximos 7 dias</em></div>
+        </div>
+        <div class="grid-2">
+          <div class="panel">
+            <h3>Receita dos últimos 7 dias</h3>
+            <canvas id="chartWeek" height="220"></canvas>
+          </div>
+          <div class="panel">
+            <h3>Serviços mais pedidos (mês)</h3>
+            <canvas id="chartServices" height="220"></canvas>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="panel">
+            <h3>Próximos agendamentos</h3>
+            <ul class="mini-list" id="nextList"></ul>
+          </div>
+          <div class="panel">
+            <h3>Ranking da equipe (mês)</h3>
+            <ul class="mini-list" id="rankList"></ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- AGENDAMENTOS -->
+      <section class="page" id="page-agendamentos">
+        <div class="toolbar">
+          <input type="search" id="bkSearch" placeholder="Buscar por nome, serviço…">
+          <select id="bkStatus">
+            <option value="">Todos os status</option>
+            <option value="pendente">Pendente</option>
+            <option value="confirmado">Confirmado</option>
+            <option value="concluido">Concluído</option>
+            <option value="cancelado">Cancelado</option>
+          </select>
+          <input type="date" id="bkDate" title="Filtrar por data">
+          <button class="btn btn-ghost btn-sm" id="bkClear">Limpar</button>
+          <button class="btn btn-ghost btn-sm" id="bkCsv">⬇ CSV</button>
+        </div>
+        <div class="table-wrap">
+          <table class="table" id="bkTable">
+            <thead><tr><th>Cliente</th><th>Serviço</th><th>Barbeiro</th><th>Data</th><th>Hora</th><th>Valor</th><th>Status</th><th>Ações</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- CLIENTES -->
+      <section class="page" id="page-clientes">
+        <div class="toolbar">
+          <input type="search" id="clSearch" placeholder="Buscar cliente…">
+          <button class="btn btn-gold btn-sm" id="newClient">+ Novo cliente</button>
+        </div>
+        <div class="table-wrap">
+          <table class="table" id="clTable">
+            <thead><tr><th>Nome</th><th>WhatsApp</th><th>Visitas</th><th>Total gasto</th><th>Última visita</th><th>Ações</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- EQUIPE -->
+      <section class="page" id="page-equipe">
+        <div class="team-grid" id="teamGrid"></div>
+      </section>
+
+      <!-- SERVIÇOS -->
+      <section class="page" id="page-servicos">
+        <div class="toolbar">
+          <span class="muted">Preços exibidos no site. Edite e salve para atualizar.</span>
+          <button class="btn btn-gold btn-sm" id="newService">+ Novo serviço</button>
+        </div>
+        <div class="table-wrap">
+          <table class="table" id="svTable">
+            <thead><tr><th>Serviço</th><th>Duração</th><th>Preço</th><th>Atend. (mês)</th><th>Ações</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- FINANCEIRO -->
+      <section class="page" id="page-financeiro">
+        <div class="kpis">
+          <div class="kpi"><span class="kpi-label">Receita (mês)</span><strong id="finRevenue">R$ 0</strong></div>
+          <div class="kpi"><span class="kpi-label">Despesas (mês)</span><strong id="finCosts">R$ 0</strong></div>
+          <div class="kpi"><span class="kpi-label">Lucro (mês)</span><strong id="finProfit">R$ 0</strong></div>
+          <div class="kpi"><span class="kpi-label">Comissões a pagar</span><strong id="finComm">R$ 0</strong></div>
+        </div>
+        <div class="grid-2">
+          <div class="panel">
+            <h3>Receita × despesas (últimos 6 meses)</h3>
+            <canvas id="chartFin" height="220"></canvas>
+          </div>
+          <div class="panel">
+            <h3>Despesas do mês</h3>
+            <ul class="mini-list" id="costList"></ul>
+            <form class="inline-form" id="costForm">
+              <input type="text" id="costDesc" placeholder="Descrição" required>
+              <input type="number" id="costValue" placeholder="R$" min="1" step="0.01" required>
+              <button class="btn btn-line btn-sm" type="submit">Adicionar</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONFIG -->
+      <section class="page" id="page-config">
+        <div class="grid-2">
+          <form class="panel" id="cfgForm">
+            <h3>Dados da barbearia</h3>
+            <label>WhatsApp comercial<input type="text" id="cfgWa" required></label>
+            <label>Abertura (seg–sex)<input type="time" id="cfgOpen" required></label>
+            <label>Fechamento (seg–sex)<input type="time" id="cfgClose" required></label>
+            <label>Fechamento sábado<input type="time" id="cfgSat" required></label>
+            <button class="btn btn-gold" type="submit">Salvar configurações</button>
+          </form>
+          <div class="panel danger">
+            <h3>Zona de demonstração</h3>
+            <p class="muted">Os dados são fictícios e ficam salvos neste navegador. Agendamentos feitos pelo site aparecem aqui automaticamente.</p>
+            <button class="btn btn-line" id="resetDemo">Restaurar dados de demonstração</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<!-- ============ MODAL ============ -->
+<div class="modal" id="modal" aria-hidden="true">
+  <div class="modal-card">
+    <button class="modal-x" id="modalClose" aria-label="Fechar">✕</button>
+    <h3 id="modalTitle">Novo agendamento</h3>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script src="js/admin.js"></script>
+</body>
+</html>
